@@ -113,4 +113,12 @@ describe('vue', function () {
     assert.equal(typeof output.render, 'function');
     assert.equal(typeof output.setup, 'function');
   });
+  it('should support prop types from external files', async function () {
+    let b = await bundle(
+      path.join(__dirname, '/integration/vue-ts-props/App.vue'),
+    );
+    let output = (await run(b)).default;
+    assert.equal(typeof output.render, 'function');
+    assert.equal(typeof output.setup, 'function');
+  });
 });
