@@ -90,6 +90,11 @@ export default (new Transformer({
             ? compiler.compileScript(descriptor, {
                 id,
                 isProd: options.mode === 'production',
+                fs: {
+                  fileExists: file => options.inputFS.existsSync(file),
+                  readFile: file => options.inputFS.readFileSync(file, 'utf8'),
+                  realpath: file => options.inputFS.realpathSync(file),
+                },
               })
             : null,
         id,
